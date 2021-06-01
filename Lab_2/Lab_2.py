@@ -105,3 +105,18 @@ D['quantity'] += 10
 print(D)
 # 3
 dp = {}
+dp['name'] = input("Введите имя: ")
+dp['age'] = input("Введите возраст: ")
+print(dp)
+
+# Вложенность хранения данных
+# 1, 2
+rec = {'name': {'firstname': 'Bob', 'lastname': 'Smith'},
+'job': ['dev', 'mgr'],
+'age': 25}
+print(rec['name']['firstname'] + ' ' + rec['name']['lastname'])
+print(rec['name']['firstname'])
+print(rec['job'])
+# 3, 4
+rec['job'].append('janitor')
+print(rec)
