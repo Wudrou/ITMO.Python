@@ -40,7 +40,7 @@ def menu():
             show_param(0)
         elif choice == 5:
             print("\nShow by min -> max COST:")
-            sort_cost()
+            rows.sort(key=lambda row: int(row[2]))
             show_all()
         elif choice == 6:
             print("\nDelete:")
@@ -87,7 +87,7 @@ def add():
             day = int(input("Введите день: "))
             dt = datetime.date(year, mon, day)
         except ValueError:
-            print(err_msg)
+            print("Введена недействительная дата. Необходимо дату в правильном формате")
             continue
         else:
             break
@@ -99,10 +99,37 @@ def add():
             output.writerow(row)
 
 def show_all():
-    read_file()
     print("\n{: <20} {: <20} {: <20} {: <20}".format(*title))
     for row in rows:
         print("{: <20} {: <20} {: <20} {: <20}".format(*row))
+
+def show_param(column):
+    param = set()
+    for row in rows:
+        param.add(row[column])
+    tmp = list(param)
+    for n, item in enumerate(tmp):
+        print(n+1, item)
+    err_msg = "Введен неправильный номер параметра. Необходимо ввести номер от 1 до " + str(len(param))
+    while True:
+        try:
+            choice = int(input("Для возврата введите 0.\nВведите номер параметра: "))
+        except ValueError:
+            print(err_msg)
+            continue
+        if choice in range(1, len(tmp) + 1):
+            print("\n{: <20} {: <20} {: <20} {: <20}".format(*title))
+            for row in rows:
+                if row[column] == tmp[choice-1]:
+                    print("{: <20} {: <20} {: <20} {: <20}".format(*row))
+            break
+        elif choice == 0:
+            break
+        else:
+            print(err_msg)
+
+def delete():
+
 
 read_file()
 menu()
