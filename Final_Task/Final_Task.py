@@ -1,5 +1,6 @@
 import csv
 import time
+import datetime
 
 rows = []
 title = ["CATEGORY", "PRODUCT", "COST", "DATE"]
@@ -33,10 +34,10 @@ def menu():
             show_all()
         elif choice == 3:
             print("\nShow for date:")
-            show_by(3)
+            show_param(3)
         elif choice == 4:
             print("\nShow by category")
-            show_by(0)
+            show_param(0)
         elif choice == 5:
             print("\nShow by min -> max COST:")
             sort_cost()
@@ -54,8 +55,8 @@ def read_file():
     global rows
     try:
         with open("data.csv") as csvfile:
-            inputcsv = csv.reader(csvfile, delimiter=',')
-            rows = list(inputcsv)
+            reader = csv.reader(csvfile, delimiter=',')
+            rows = list(reader)
     except IOError:
         print("Ошибка чтения файла или файл не существует")
         file = open("data.csv", "w+")
@@ -64,7 +65,41 @@ def read_file():
         print("Готово!\n")
         menu()
 
+def add():
+    row = []
+    category = input("Введите категорию: ")
+    row.append(category)
+    prod = input("Введите продукт: ")
+    row.append(prod)
+    while True:
+        try:
+            cost = int(input("Введите стоимость: "))
+        except ValueError:
+            print("Введите корректную стоимость.")
+            continue
+        else:
+            break
+    row.append(cost)
+    while True:
+        try:
+            year = int(input("Введите год: "))
+            mon = int(input("Введите месяц: "))
+            day = int(input("Введите день: "))
+            dt = datetime.date(year, mon, day)
+        except ValueError:
+            print(err_msg)
+            continue
+        else:
+            break
+    row.append(dt)
+    rows.append(row)
+    with open('data.csv', "w", newline="") as csvfile:
+        output = csv.writer(csvfile)
+        for row in rows:
+            output.writerow(row)
+
 def show_all():
+    read_file()
     print("\n{: <20} {: <20} {: <20} {: <20}".format(*title))
     for row in rows:
         print("{: <20} {: <20} {: <20} {: <20}".format(*row))
