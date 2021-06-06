@@ -17,7 +17,7 @@ def menu():
         print("6. Delete")
         print("0. Exit")
 
-    err_msg = "\nВведена недействительная команда. Необходимо ввести команду от 0 до 6"
+    err_msg = "\nВведена неверная команда. Необходимо ввести команду от 0 до 6"
 
     while True:
         show_menu()
@@ -27,23 +27,23 @@ def menu():
             print(err_msg)
             continue
         if choice == 1:
-            print("\nAdd:")
+            print("\nДобавление записи.")
             add()
         elif choice == 2:
-            print("\nShow all:")
+            print("\nПоказать все записи.")
             show_all()
         elif choice == 3:
-            print("\nShow for date:")
+            print("\nПоказать записи по дате.")
             show_param(3)
         elif choice == 4:
-            print("\nShow by category")
+            print("\nПоказать записи по категории")
             show_param(0)
         elif choice == 5:
-            print("\nShow by min -> max COST:")
-            rows.sort(key=lambda row: int(row[2]))
+            print("\nПоказать записи по возрастанию цены.")
+            sort()
             show_all()
         elif choice == 6:
-            print("\nDelete:")
+            print("\nУдаление записей.")
             delete()
         elif choice == 0:
             print("\nВыход из программы...")
@@ -128,8 +128,15 @@ def show_param(column):
         else:
             print(err_msg)
 
+def sort():
+    rows.sort(key=lambda row: int(row[2]))
+
 def delete():
-
-
+    file = open("data.csv", "w+")
+    file.close()
+    read_file()
+    time.sleep(1)
+    print("\nВсе записи удалены.")
+          
 read_file()
 menu()
