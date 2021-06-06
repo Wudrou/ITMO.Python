@@ -11,6 +11,6 @@ print("Среднее значение: ", statistics.mean(list))
 print("Медиана: ", statistics.median(list))
 print("Стандартное отклонение: ", statistics.stdev(list))
 
-import random
+from random import randint
 
 print("Случайное число от 1 до 100: ", random.randint(1, 100))
