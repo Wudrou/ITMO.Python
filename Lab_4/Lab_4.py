@@ -13,13 +13,13 @@ igrok2_Wcount = 0
 for i in range(r_count):
     #Моделирование бросания кубика первым играющим
     print('Кубик бросает: ', igrok1)
-    time.sleep(2)
+    time.sleep(1)
     n1 = randint(1, 6)
     print('Выпало: ', n1)
 
     #Моделирование бросания кубика вторым играющим
     print('Кубик бросает: ', igrok2)
-    time.sleep(2)
+    time.sleep(1)
     n2 = randint(1, 6)
     print('Выпало: ', n2)
 
