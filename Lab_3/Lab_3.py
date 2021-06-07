@@ -4,7 +4,7 @@ import statistics
 #print(help(math))
 #print(help(statistics))
 
-list = [14, 43, 27, 1, -9, 56, 90, 11, 9, 176]
+list = [14, 8, 27, 1, -9, 56, 90, 11, 9, 176]
 print(list)
 print("Сумма чисел: ", math.fsum(list))
 print("Среднее значение: ", statistics.mean(list))
