@@ -1,10 +1,10 @@
 from random import randint
 import time
 
-def input():
+def name_input():
     igrok1 = input('Введите имя 1-го игрока: ')
     igrok2 = input('Введите имя 2-го игрока: ')
-    return (igrok1, igrok2)
+    return igrok1, igrok2
 
 def game(igrok1, igrok2):
     r_count = int(input('Введите количество раундов: '))
